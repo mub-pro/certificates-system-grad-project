@@ -15,10 +15,15 @@ class Document extends Model
         'document_issue_date',
         'user_id',
         'document_type_id',
-        'degree_id'
+        'degree_id',
+        'pdf_file'
     ];
 
     public function document_type() {
         return $this->belongsTo(DocumentType::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

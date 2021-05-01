@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->string('document_name');
             $table->string('document_description');
             $table->date('document_issue_date')->nullable();
+            $table->string('pdf_file');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('degree_id')->constrained();
             $table->foreignId('document_type_id')->constrained();

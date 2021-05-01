@@ -18,6 +18,9 @@
                 <th scope="col">Document id</th>
                 <th scope="col">Document</th>
                 <th scope="col">Type</th>
+                @if (Auth::user()->role->role_name == 'admin')
+                    <th scope="col">Owner</th>
+                @endif
                 <th scope="col">View</th>
             </tr>
         </thead>
@@ -28,7 +31,11 @@
                 <td scope="row">{{ $document->id }}</td>
                 <td>{{ $document->document_name }}</td>
                 <td>{{ $document->document_type->document_type_name }}</td>
+                @if (Auth::user()->role->role_name == 'admin')
+                    <td>{{ $document->user->first_name }} - {{ $document->user->last_name }}</td>
+                @endif
                 <td><a href="{{route('documents.show', $document->id)}}" class="text-decoration-none">view</a></td>
+                
             </tr>
             @endforeach
         </tbody>

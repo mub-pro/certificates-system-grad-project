@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,14 +29,16 @@ class UserController extends Controller
         // dd($status);
         // $date = now('asia/riyadh')->format('Y-m-d-h-M-s');
         // dd();
+        
         $data = User::with('role')->get();
         return view('users.index', ['users'=>$data]);
     }
 
     // show create page
     public function create() {
-        $roles = Role::all();
-        return view('users.create', ['roles'=>$roles]);
+        // $roles = Role::all();
+        // return view('users.create', ['roles'=>$roles]);
+        return Storage::download('file.pdf');
     }
 
     public function store(Request $request) {

@@ -25,17 +25,11 @@
                   @endif
                        
                   @endauth
-
-
             </div>
-
             <div class="col-4">
                   <img src="/img/img.png" alt="student" width="100%">
             </div>
-
       </div>
-
-
 </div>
 
 
