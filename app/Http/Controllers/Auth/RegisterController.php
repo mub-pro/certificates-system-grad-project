@@ -33,6 +33,7 @@ class RegisterController extends Controller
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
             'role_id'=> 2,
+            'hashid'=> Hash::make($request->id),
         ]);
 
        Auth::attempt($request->only('email', 'password'));

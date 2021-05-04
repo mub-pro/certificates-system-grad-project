@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-
-use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\College;
 use Illuminate\Http\Request;
+use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
 
     public function __construct() {
-        $this->middleware(['auth', 'userIsAdmin']);
+        $this->middleware('auth');
+        $this->middleware('userIsAdmin')->except('account', 'update');
     }
+    
     public function index() {
         // $expireDate = Carbon::create(2021, 4, 27, 6, 24, 0, 'Asia/Riyadh');
         // $nowDate = Carbon::now();
@@ -29,20 +31,21 @@ class UserController extends Controller
         // dd($status);
         // $date = now('asia/riyadh')->format('Y-m-d-h-M-s');
         // dd();
+       
         
-        $data = User::with('role')->get();
+        $data = User::with('role')->get(); 
+    
         return view('users.index', ['users'=>$data]);
     }
 
     // show create page
     public function create() {
-        // $roles = Role::all();
-        // return view('users.create', ['roles'=>$roles]);
-        return Storage::download('file.pdf');
+        $roles = Role::all();
+        return view('users.create', ['roles'=>$roles]);
     }
 
     public function store(Request $request) {
-       
+
         $this->validate($request, [
             'first_name'=> 'required|max:255',
             'last_name'=> 'required|max:255',
@@ -57,6 +60,7 @@ class UserController extends Controller
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
             'role_id'=> $request->role,
+            
         ]);
         
             return redirect()->route('users.index');
@@ -65,19 +69,30 @@ class UserController extends Controller
     public function show($id) {
         $data = User::findOrFail($id);
 
-        return view('users.show', ['user'=>$data]);
+        return view('users.show', ['user'=> $data]);
     }
 
-    // show edit page
-    public function edit() {
-        //
+    public function destroy($id) {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('message', 'The user has been deleted!');
     }
 
-    public function update() {
-        //
+    public function update(Request $request, $id) {
+        User::where('id', $id)->update([
+            'first_name'=> $request->first_name,
+            'last_name'=> $request->last_name,
+            'college_id'=> $request->college
+        ]);
+
+        return redirect()->route('users.account')->with('message', 'The user has been updated!');
     }
 
-    public function destroy() {
-        //
+    public function account() {
+        $user = Auth::user();
+        
+        $colleges = College::all();
+        
+        return view('users.account', ['account'=> $user, 'colleges'=> $colleges]);
     }
 }

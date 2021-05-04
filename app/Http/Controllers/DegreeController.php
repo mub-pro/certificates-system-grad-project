@@ -34,4 +34,10 @@ class DegreeController extends Controller
 
         return redirect()->route('degree.index');
     }
+
+    public function destroy($id) {
+        $degree = Degree::findOrFail($id);
+        $degree->delete();
+        return redirect()->route('degree.index')->with('message', 'The user has been deleted!');
+    }
 }

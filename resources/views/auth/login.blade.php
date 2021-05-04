@@ -29,7 +29,6 @@
                 @if (session('status'))
                     <h6 class="mb-5 text-center text-danger">Invalid login details</h3>
                 @endif
-                <div class="mb-5 mt-5 fw-light"><a href="{{ route('register.index') }}">Forgot Your Password ?</a></div>
                 <div class="mb-5 mt-5 fw-light"><a href="{{ route('register.index') }}">Creare New Account</a></div>
 
             </form>

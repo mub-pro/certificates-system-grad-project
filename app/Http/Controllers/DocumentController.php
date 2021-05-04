@@ -9,10 +9,16 @@ use App\Models\Document;
 use App\Models\DocumentType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware('userIsAdmin')->except('index', 'show', 'download');
+    }
 
     public function index()
     {
@@ -39,6 +45,7 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
+        // dd(11);
         $this->validate($request, [
             'document_name' => 'required',
             'document_description' => 'required',
@@ -54,6 +61,7 @@ class DocumentController extends Controller
             $request->pdf_file->extension();
 
         $request->pdf_file->storeAs('public/pdf_files', $new_file_name);
+
         Document::create([
             'document_name' => $request->document_name,
             'document_description' => $request->document_description,
@@ -61,7 +69,9 @@ class DocumentController extends Controller
             'user_id' => $request->student,
             'degree_id' => $request->degree,
             'document_type_id' => $request->type,
-            'pdf_file' => $new_file_name,
+            'pdf_file' => $new_file_name,   
+            'hashid' => Hash::make(now()->format('Y-m-d')),
+            
         ]);
 
 
@@ -73,7 +83,7 @@ class DocumentController extends Controller
         if (Auth::user()->role_id == 1) {
             $data = Document::findOrFail($id);
         } else {
-            $data = Document::where('user_id', Auth::user()->id)->findOrFail($id);
+            $data = Document::where('user_id', Auth::user()->id)->first();
         }
 
         return view('documents.show', ['document' => $data]);
@@ -82,10 +92,12 @@ class DocumentController extends Controller
     public function download($file)
     {
         return Storage::download('public/pdf_files/'.$file);
-        // return $download;
     }
 
-    public function sharing() {
-        dd('you are guest');
+    public function destroy($id) {
+        $document = Document::findOrFail($id);
+        $document->delete();
+        return redirect()->route('documents.index')->with('message', 'The document has been deleted!');
     }
+
 }

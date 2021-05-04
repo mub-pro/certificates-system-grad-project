@@ -5,10 +5,9 @@
             <div class="mb-4 fs-2 fw-bold">Colleges</div>
             <p class="mb-5">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"</p>
             <div class="d-flex mb-5">
-                <input type="search" name="search" class="form-control w-25 mx-5" placeholder="search">
                 <a href="{{route('college.create')}}" class="btn btn-info">Add New College</a>
             </div>
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

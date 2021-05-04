@@ -3,7 +3,7 @@
 @section('wrap')
 
 <style>
-    .xx{
+    .xx {
         margin-left: 20%;
     }
 </style>
@@ -63,20 +63,20 @@
             </div>
         </div>
         <div class="mb-5">
-                <select id="role_id" name="role" class="form-select w-25" aria-label="Default select example">
-                    <option value="">Role</option>
-                    @foreach($roles as $role)
-                    <option value="{{ $role->id }}">{{ $role->role_name }}</option>
-                    @endforeach
-                </select>
-                @error('role')
-                    <div class="text-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
+            <select id="role_id" name="role" class="form-select w-25" aria-label="Default select example">
+                <option value="">Role</option>
+                @foreach($roles as $role)
+                <option value="{{ $role->id }}">{{ $role->role_name }}</option>
+                @endforeach
+            </select>
+            @error('role')
+            <div class="text-danger">
+                {{ $message }}
             </div>
+            @enderror
+        </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
-    
+
 </div>
 @endsection

@@ -16,7 +16,8 @@ class Document extends Model
         'user_id',
         'document_type_id',
         'degree_id',
-        'pdf_file'
+        'pdf_file',
+        'hashid'
     ];
 
     public function document_type() {
