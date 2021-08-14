@@ -12,4 +12,5 @@ class Degree extends Model
     protected $fillable = [
         'degree_name',
     ];
+
 }

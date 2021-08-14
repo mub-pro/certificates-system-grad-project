@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\College;
 use Illuminate\Http\Request;
-use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -46,20 +45,20 @@ class UserController extends Controller
 
     public function store(Request $request) {
 
-        $this->validate($request, [
-            'first_name'=> 'required|max:255',
-            'last_name'=> 'required|max:255',
-            'email'=> 'required|email',
-            'password'=> 'required|confirmed|min:8',
-            'role'=> 'required'
-        ]);
+        // $this->validate($request, [
+        //     'first_name'=> 'required|max:255',
+        //     'last_name'=> 'required|max:255',
+        //     'email'=> 'required|email',
+        //     'password'=> 'required|confirmed|min:8',
+        //     'role'=> 'required'
+        // ]);
         
         User::create([
-            'first_name'=> $request->first_name,
-            'last_name'=> $request->last_name,
-            'email'=> $request->email,
-            'password'=> Hash::make($request->password),
-            'role_id'=> $request->role,
+            'first_name'=> 'a',
+            'last_name'=> 'b',
+            'email'=> 'a@a.com',
+            'password'=> Hash::make('123456789'),
+            'role_id'=> 2,
             
         ]);
         

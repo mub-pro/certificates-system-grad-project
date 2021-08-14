@@ -36,6 +36,7 @@
                 <th scope="col">View</th>
                 @if (Auth::user()->role->role_name == 'admin')
                 <th scope="col">Action</th>
+                <th scope="col">degree</th>
                 @endif
 
             </tr>
@@ -63,6 +64,14 @@
                             </button>
                         </form>
                     </span>
+                </td>
+                <td>
+                    @isset($document->degree->degree_name)
+                        {{$document->degree->degree_name}}
+                    @endisset
+                    @empty($document->degree->degree_name)
+                        -
+                    @endempty
                 </td>
                 @endif
             </tr>

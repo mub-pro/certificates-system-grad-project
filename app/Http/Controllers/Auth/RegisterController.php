@@ -19,20 +19,20 @@ class RegisterController extends Controller
     }
 
     public function store(Request $request) {
-        $this->validate($request, [
-            'first_name'=> 'required|max:255',
-            'last_name'=> 'required|max:255',
-            'email'=> 'required|email',
-            'password'=> 'required|confirmed|min:8',
-        ]);
+        // $this->validate($request, [
+        //     'first_name'=> 'required|max:255',
+        //     'last_name'=> 'required|max:255',
+        //     'email'=> 'required|email',
+        //     'password'=> 'required|confirmed|min:8',
+        // ]);
 
         // $role = Role::where('role_name', '=', 'student')->firstOrFail()->id;
         User::create([
-            'first_name'=> $request->first_name,
-            'last_name'=> $request->last_name,
-            'email'=> $request->email,
-            'password'=> Hash::make($request->password),
-            'role_id'=> 2,
+            'first_name'=> 'mubarak',
+            'last_name'=> 'bakarman',
+            'email'=> 'm@m.com',
+            'password'=> Hash::make('123456789'),
+            'role_id'=> 1,
             'hashid'=> Hash::make($request->id),
         ]);
 

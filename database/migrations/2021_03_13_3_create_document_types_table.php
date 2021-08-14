@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateDocumentTypesTable extends Migration
@@ -18,6 +19,10 @@ class CreateDocumentTypesTable extends Migration
             $table->string('document_type_name');
             $table->timestamps();
         });
+
+        DB::table('document_types')->insert([
+            ['document_type_name'=> 'Training course certificate', 'created_at'=> now('asia/riyadh')]
+        ]);
     }
 
     /**

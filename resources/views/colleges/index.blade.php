@@ -5,7 +5,7 @@
             <div class="mb-4 fs-2 fw-bold">Colleges</div>
             <p class="mb-5">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"</p>
             <div class="d-flex mb-5">
-                <a href="{{route('college.create')}}" class="btn btn-info">Add New College</a>
+                <a href="{{route('college.create')}}" class="btn btn-primary">Add New College</a>
             </div>
             <table class="table table-bordered">
                 <thead>

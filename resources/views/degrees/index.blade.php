@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,17 @@
             <tr>
                 <td scope="row">{{ $degree->id }}</td>
                 <td>{{ $degree->degree_name }}</td>
+                <td>
+                    <span>
+                        <form action="{{route('degree.destroy', $degree->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Are you sure you want to delete {{$degree->degree_name}}?')" type="submit" class="btn p-0 text-danger size">
+                                delete
+                            </button>
+                        </form>
+                    </span>
+                </td>
             </tr>
             @endforeach
 

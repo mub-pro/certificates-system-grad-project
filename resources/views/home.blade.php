@@ -6,9 +6,9 @@
 
       <div class="row d-flex justify-content-center mt-5">
             <div class="col-5">
-                  <div class="mt-5 mb-5 fs-1 fw-bold">Certificates System</div>
+                  <div class="mt-5 mb-5 fs-1 fw-bold">Digital Certificates</div>
 
-                  <p class="fs-5 mb-5 mt-5 fw-light">You Can Manage Your Documents by <span class="fw-bold text-info">Download</span> it or <span class="fw-bold text-info">Share</span> it</p>
+                  <p class="fs-5 mb-5 mt-5 fw-light">Manage Your Documents by <span class="fw-bold text-info">Download</span> it or <span class="fw-bold text-info">Share</span> it in anytime and anywhere.</p>
                   @guest
                         <a href="{{ route('login') }}" class="btn bg-primary text-light px-5 py-2 mt-5 fw-bold">Login</a>
 

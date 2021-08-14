@@ -44,7 +44,13 @@
             @if(Auth::user()->role->role_name == 'student')
             <div class="mb-5">
                 <select id="college_id" name="college" class="form-select w-25" aria-label="Default select example">
-                    <option value="{{$account->college_id}}">{{$account->college->college_name}}</option>
+                    <option value="{{$account->college_id}}">
+                    @isset($account->college->college_name)
+                        {{$account->college->college_name}}
+                    @endisset
+                    @empty($account->college->college_name)
+                        -
+                    @endempty</option>
                     @foreach($colleges as $college)
                     <option value="{{ $college->id }}">{{ $college->college_name }}</option>
                     @endforeach

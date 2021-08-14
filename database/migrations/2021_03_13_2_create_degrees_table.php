@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateDegreesTable extends Migration
 {
@@ -18,6 +19,10 @@ class CreateDegreesTable extends Migration
             $table->string('degree_name');
             $table->timestamps();
         });
+
+        DB::table('degrees')->insert([
+            ['degree_name'=> 'Bachelor degrees', 'created_at'=> now('asia/riyadh')]
+        ]);
     }
 
     /**
